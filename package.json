@@ -2,6 +2,23 @@
   "name": "ci-cd-practice",
   "version": "1.0.0",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "test": "jest"
+  },
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/monik-autofacets/ci-cd-practice.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/monik-autofacets/ci-cd-practice/issues"
+  },
+  "homepage": "https://github.com/monik-autofacets/ci-cd-practice#readme",
+  "description": "",
+  "devDependencies": {
+    "jest": "^30.3.0"
   }
 }
