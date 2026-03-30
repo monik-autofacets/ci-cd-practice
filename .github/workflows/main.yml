@@ -20,6 +20,10 @@ jobs:
   test:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        node-version: [18, 20, 22]
+
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -27,14 +31,11 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: ${{ matrix.node-version }}
           cache: "npm"
 
-      - name: Install Dependencies
-        run: npm install
-
-      - name: Run tests
-        run: npm test
+      - run: npm install
+      - run: npm test
 
   build:
     runs-on: ubuntu-latest
