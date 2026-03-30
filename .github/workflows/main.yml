@@ -50,3 +50,5 @@ jobs:
         with:
           name: build-output
           path: dist/
+      - name: Debug dist folder
+        run: ls -R
