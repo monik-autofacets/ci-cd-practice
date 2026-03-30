@@ -85,5 +85,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build docker image
-        run: docker build -t ci-cd-app .
+      - name: Build Docker image
+        run: |
+          docker build -t ci-cd-app:${{ github.sha }} .
+          docker tag ci-cd-app:${{ github.sha }} ci-cd-app:latest
