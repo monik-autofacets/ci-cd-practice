@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "scripts": {
     "start": "node index.js",
-    "test": "jest"
+    "test": "jest",
+    "build": "mkdir -p dist && echo 'Build successful' > dist/output.txt"
   },
   "main": "index.js",
   "repository": {
