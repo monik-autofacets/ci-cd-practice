@@ -77,3 +77,13 @@ jobs:
 
       - name: Simuate deployment
         run: cat output.txt
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build docker image
+        run: docker build -t ci-cd-app .
