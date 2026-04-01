@@ -94,23 +94,26 @@ jobs:
 
   integration:
     runs-on: ubuntu-latest
-    needs: docker # ✅ ensures image exists before testing
-
-    services:
-      mongo:
-        image: mongo:6
-        ports:
-          - 27017:27017
+    needs: docker
 
     steps:
-      - name: Run app container
+      - name: Create network
+        run: docker network create mynet
+
+      - name: Run Mongo
+        run: |
+          docker run -d --name mongo \
+            --network mynet \
+            mongo:6
+
+      - name: Run app
         run: |
           docker run -d --name app \
-            --network host \
+            --network mynet \
             ${{ secrets.DOCKER_USERNAME }}/ci-cd-app:${{ github.sha }}
 
       - name: Wait for app
-        run: sleep 5
+        run: sleep 8
 
       - name: Test endpoint
         run: curl http://localhost:3000
