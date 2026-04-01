@@ -8,6 +8,9 @@ on:
       - "**.js"
       - "package.json"
       - "package-lock.json"
+      - "Dockerfile"
+      - "docker-compose.yml"
+      - ".github/workflows/**"
   pull_request:
     branches:
       - main
@@ -15,6 +18,9 @@ on:
       - "**.js"
       - "package.json"
       - "package-lock.json"
+      - "Dockerfile"
+      - "docker-compose.yml"
+      - ".github/workflows/**"
 
 jobs:
   test:
@@ -110,6 +116,7 @@ jobs:
         run: |
           docker run -d --name app \
             --network mynet \
+            -p 3000:3000 \
             ${{ secrets.DOCKER_USERNAME }}/ci-cd-app:${{ github.sha }}
 
       - name: Wait for app
