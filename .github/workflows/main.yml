@@ -110,6 +110,11 @@ jobs:
     needs: docker-build
 
     steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t ci-cd-app:${{ github.sha }} .
+
       - name: Create network
         run: docker network create mynet
 
